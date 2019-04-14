@@ -54,6 +54,7 @@
             "phpcbf src tests"
         ],
         "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
+        "doc": "bear.apidoc 'MyVendor\\Ticket' ./ docs",
         "app": "php bin/app.php",
         "page": "php bin/page.php"
     },
