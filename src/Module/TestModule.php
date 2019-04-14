@@ -15,7 +15,7 @@ class TestModule extends AbstractAppModule
             new AuraSqlModule(
                 getenv('TKT_DB_DSN') . '_test',
                 getenv('TKT_DB_USER'),
-                getenv('TKT_DB_PATH'),
+                getenv('TKT_DB_PASS'),
                 getenv('TKT_DB_SLAVE')
             )
         );
