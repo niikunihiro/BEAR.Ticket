@@ -1,12 +1,14 @@
 <?php
 namespace MyVendor\Ticket\Resource\App;
 
+use BEAR\RepositoryModule\Annotation\Cacheable;
 use BEAR\Resource\Annotation\JsonSchema;
 use BEAR\Resource\ResourceObject;
 use Ray\Query\Annotation\AliasQuery;
 
 /**
  * Class Ticket
+ * @Cacheable(expirySecond=30)
  */
 class Ticket extends ResourceObject
 {
