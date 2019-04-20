@@ -6,6 +6,8 @@ use BEAR\Package\PackageModule;
 use BEAR\Package\Provide\Router\AuraRouterModule;
 use BEAR\Resource\Module\JsonSchemaLinkHeaderModule;
 use BEAR\Resource\Module\JsonSchemaModule;
+use MyVendor\Ticket\Logger\LoggerInterface;
+use MyVendor\Ticket\Logger\TicketLogger;
 use Ray\AuraSqlModule\AuraSqlModule;
 use Ray\IdentityValueModule\IdentityValueModule;
 use Ray\Query\SqlQueryModule;
@@ -37,6 +39,8 @@ class AppModule extends AbstractAppModule
         );
         $this->install(new JsonSchemaLinkHeaderModule('http://www.example.com/'));
         $this->install(new AuraRouterModule($appDir . '/var/conf/aura.route.php'));
+
+        $this->bind(LoggerInterface::class)->to(TicketLogger::class);
         $this->install(new PackageModule);
     }
 }
