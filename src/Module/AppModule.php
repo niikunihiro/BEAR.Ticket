@@ -6,8 +6,11 @@ use BEAR\Package\PackageModule;
 use BEAR\Package\Provide\Router\AuraRouterModule;
 use BEAR\Resource\Module\JsonSchemaLinkHeaderModule;
 use BEAR\Resource\Module\JsonSchemaModule;
+use MyVendor\Ticket\Annotation\BenchMark;
+use MyVendor\Ticket\Interceptor\BenchMarker;
 use MyVendor\Ticket\Logger\LoggerInterface;
 use MyVendor\Ticket\Logger\TicketLogger;
+use phpDocumentor\Reflection\Types\This;
 use Ray\AuraSqlModule\AuraSqlModule;
 use Ray\IdentityValueModule\IdentityValueModule;
 use Ray\Query\SqlQueryModule;
@@ -41,6 +44,11 @@ class AppModule extends AbstractAppModule
         $this->install(new AuraRouterModule($appDir . '/var/conf/aura.route.php'));
 
         $this->bind(LoggerInterface::class)->to(TicketLogger::class);
+        $this->bindInterceptor(
+            $this->matcher->any(),
+            $this->matcher->annotatedWith(BenchMark::class),
+            [BenchMarker::class]
+        );
         $this->install(new PackageModule);
     }
 }
