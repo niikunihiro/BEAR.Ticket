@@ -10,8 +10,8 @@ use MyVendor\Ticket\Annotation\BenchMark;
 use MyVendor\Ticket\Interceptor\BenchMarker;
 use MyVendor\Ticket\Logger\LoggerInterface;
 use MyVendor\Ticket\Logger\TicketLogger;
-use phpDocumentor\Reflection\Types\This;
 use Ray\AuraSqlModule\AuraSqlModule;
+use Ray\CakeDbModule\CakeDbModule;
 use Ray\IdentityValueModule\IdentityValueModule;
 use Ray\Query\SqlQueryModule;
 
@@ -33,6 +33,15 @@ class AppModule extends AbstractAppModule
             )
         );
         $this->install(new SqlQueryModule($appDir . '/var/sql'));
+        $dbConfig = [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
+            'username' => getenv('TKT_DB_USER'),
+            'password' => getenv('TKT_DB_PASS'),
+            'database' => getenv('TKT_DB_NAME'),
+            'host' => getenv('TKT_DB_HOST'),
+        ];
+        $this->install(new CakeDbModule($dbConfig));
         $this->install(new IdentityValueModule);
         $this->install(
             new JsonSchemaModule(
