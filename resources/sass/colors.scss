@@ -1,0 +1,91 @@
+.main-panel {
+
+  & > .contents {
+
+    .container {
+      .tag {
+
+        &.is-yellow {
+          color: #484848;
+
+          .title {
+            color: #484848;
+          }
+        }
+      }
+
+      .bookings {
+        .column {
+          .box {
+            color: $tag_color;
+          }
+        }
+
+        .box {
+          color: $tag_color;
+
+          .title {
+            color: $tag_color;
+          }
+
+          &.is-yellow {
+            color: #484848;
+
+            .title {
+              color: #484848;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .is-light-blue {
+    background-color: $cyan;
+  }
+
+  .is-green {
+    background-color: $green;
+  }
+
+  .is-yellow {
+    background-color: $yellow;
+  }
+
+  .is-red {
+    background-color: $red;
+  }
+
+  .is-purple {
+    background-color: $purple;
+  }
+
+  .is-orange {
+    background-color: $orange;
+  }
+
+  .is-black {
+    background-color: $black;
+  }
+
+  .is-maroon {
+    background-color: maroon;
+  }
+
+  .is-gray {
+    background-color: gray;
+  }
+
+  .is-navy {
+    background-color: navy;
+  }
+
+  .is-teal {
+    background-color: teal;
+  }
+
+  .is-aqua {
+    background-color: #00cccc;
+  }
+}

@@ -11,7 +11,9 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('src/app.js', 'dist/').sass('src/app.scss', 'dist/');
+mix.js('resources/js/app.js', 'public/js')
+  .extract(['vue', 'axios', 'moment', 'buefy', 'lodash'])
+  .sass('resources/sass/app.scss', 'public/css');
 
 // Full API
 // mix.js(src, output);
