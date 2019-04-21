@@ -1,8 +1,7 @@
 <?php
-namespace MyVendor\Ticket\Resource\App;
+namespace MyVendor\Ticket\Resource\App\Api;
 
 use BEAR\Package\Annotation\ReturnCreatedResource;
-use BEAR\RepositoryModule\Annotation\Cacheable;
 use BEAR\RepositoryModule\Annotation\Purge;
 use BEAR\Resource\Annotation\JsonSchema;
 use BEAR\Resource\ResourceObject;
@@ -14,10 +13,6 @@ use Ray\IdentityValueModule\NowInterface;
 use Ray\IdentityValueModule\UuidInterface;
 use Ray\Query\Annotation\AliasQuery;
 
-/**
- * Class Tickets
- * @Cacheable(expirySecond=30)
- */
 class Tickets extends ResourceObject
 {
     /** @var callable */
@@ -57,7 +52,7 @@ class Tickets extends ResourceObject
     /**
      * @ReturnCreatedResource
      * @Transactional
-     * @Purge(uri="app://self/tickets")
+     * @Purge(uri="app://self/api/tickets")
      *
      * @param string $title
      * @param string $description
@@ -65,11 +60,8 @@ class Tickets extends ResourceObject
      *
      * @return ResourceObject
      */
-    public function onPost(
-        string $title,
-        string $description = '',
-        string $assignee = ''
-    ) : ResourceObject {
+    public function onPost(string $title, string $description = '', string $assignee = '') : ResourceObject
+    {
         $id = (string) $this->uuid;
         $time = (string) $this->now;
         ($this->createTicket)([
@@ -82,7 +74,7 @@ class Tickets extends ResourceObject
             'updated_at' => $time,
         ]);
         $this->code = StatusCode::CREATED;
-        $this->headers[ResponseHeader::LOCATION] = '/ticket?id=' . $id;
+        $this->headers[ResponseHeader::LOCATION] = '/api/ticket?id=' . $id;
 
         return $this;
     }

@@ -1,5 +1,5 @@
 <?php
-namespace MyVendor\Ticket\Resource\App;
+namespace MyVendor\Ticket\Resource\App\Api;
 
 use BEAR\RepositoryModule\Annotation\Cacheable;
 use BEAR\Resource\Annotation\JsonSchema;

@@ -1,5 +1,6 @@
 <?php
 /* @var \Aura\Router\Map $map */
-$map->route('/ticket', '/tickets/{id}');
-$map->route('/weekday', '/weekday/{year}/{month}/{day}');
-$map->route('/tickets', '/ticket/page/{id}');
+$map->route('/api/ticket', '/api/tickets/{id}');
+$map->route('/weekday', '/api/weekday/{year}/{month}/{day}');
+
+$map->route('/tickets', '/ticket/{id}');
