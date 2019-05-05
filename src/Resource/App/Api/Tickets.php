@@ -7,7 +7,9 @@ use BEAR\Resource\Annotation\JsonSchema;
 use BEAR\Resource\ResourceObject;
 use Koriym\HttpConstants\ResponseHeader;
 use Koriym\HttpConstants\StatusCode;
+use Koriym\QueryLocator\QueryLocatorInject;
 use Ray\AuraSqlModule\Annotation\Transactional;
+use Ray\AuraSqlModule\AuraSqlInject;
 use Ray\Di\Di\Named;
 use Ray\IdentityValueModule\NowInterface;
 use Ray\IdentityValueModule\UuidInterface;
@@ -15,6 +17,9 @@ use Ray\Query\Annotation\AliasQuery;
 
 class Tickets extends ResourceObject
 {
+    use AuraSqlInject;
+    use QueryLocatorInject;
+
     /** @var callable */
     private $createTicket;
     /** @var NowInterface */
@@ -40,12 +45,14 @@ class Tickets extends ResourceObject
 
     /**
      * @JsonSchema(schema="tickets.json")
-     * @AliasQuery("ticket_list")
      *
      * @return ResourceObject
      */
     public function onGet() : ResourceObject
     {
+        $tickets = $this->pdo->fetchAll($this->query['ticket_list']);
+        $this->body = compact('tickets');
+
         return $this;
     }
 
