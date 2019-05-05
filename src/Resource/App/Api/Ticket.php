@@ -2,13 +2,15 @@
 namespace MyVendor\Ticket\Resource\App\Api;
 
 use BEAR\RepositoryModule\Annotation\Cacheable;
+use BEAR\RepositoryModule\Annotation\HttpCache;
 use BEAR\Resource\Annotation\JsonSchema;
 use BEAR\Resource\ResourceObject;
 use Ray\Query\Annotation\AliasQuery;
 
 /**
  * Class Ticket
- * @Cacheable(expirySecond=30)
+ * @Cacheable
+ * @HttpCache(isPrivate=true, noCache=true)
  */
 class Ticket extends ResourceObject
 {

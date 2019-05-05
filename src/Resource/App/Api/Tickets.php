@@ -2,6 +2,8 @@
 namespace MyVendor\Ticket\Resource\App\Api;
 
 use BEAR\Package\Annotation\ReturnCreatedResource;
+use BEAR\RepositoryModule\Annotation\Cacheable;
+use BEAR\RepositoryModule\Annotation\HttpCache;
 use BEAR\RepositoryModule\Annotation\Purge;
 use BEAR\Resource\Annotation\JsonSchema;
 use BEAR\Resource\ResourceObject;
@@ -15,6 +17,11 @@ use Ray\IdentityValueModule\NowInterface;
 use Ray\IdentityValueModule\UuidInterface;
 use Ray\Query\Annotation\AliasQuery;
 
+/**
+ * Class Tickets
+ * @Cacheable
+ * @HttpCache(isPrivate=true, noCache=true)
+ */
 class Tickets extends ResourceObject
 {
     use AuraSqlInject;
