@@ -6,6 +6,7 @@ use BEAR\Package\PackageModule;
 use BEAR\Package\Provide\Router\AuraRouterModule;
 use BEAR\Resource\Module\JsonSchemaLinkHeaderModule;
 use BEAR\Resource\Module\JsonSchemaModule;
+use Koriym\QueryLocator\QueryLocatorModule;
 use MyVendor\Ticket\Annotation\BenchMark;
 use MyVendor\Ticket\Interceptor\BenchMarker;
 use MyVendor\Ticket\Logger\LoggerInterface;
@@ -51,7 +52,7 @@ class AppModule extends AbstractAppModule
         );
         $this->install(new JsonSchemaLinkHeaderModule('http://www.example.com/'));
         $this->install(new AuraRouterModule($appDir . '/var/conf/aura.route.php'));
-
+        $this->install(new QueryLocatorModule($appDir . '/var/sql'));
         $this->bind(LoggerInterface::class)->to(TicketLogger::class);
         $this->bindInterceptor(
             $this->matcher->any(),

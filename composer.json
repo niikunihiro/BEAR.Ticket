@@ -12,7 +12,8 @@
         "ray/identity-value-module": "^0.1.0",
         "ray/query-module": "^0.2.1",
         "madapaja/twig-module": "^2.0",
-        "ray/cake-database-module": "^1.0"
+        "ray/cake-database-module": "^1.0",
+        "koriym/query-locator": "^1.4"
     },
     "require-dev": {
         "bear/qatools": "^1.7",
