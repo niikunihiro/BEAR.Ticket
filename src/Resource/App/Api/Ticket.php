@@ -4,6 +4,7 @@ namespace MyVendor\Ticket\Resource\App\Api;
 use BEAR\RepositoryModule\Annotation\Cacheable;
 use BEAR\RepositoryModule\Annotation\HttpCache;
 use BEAR\Resource\Annotation\JsonSchema;
+use BEAR\Resource\Annotation\Link;
 use BEAR\Resource\ResourceObject;
 use Ray\Query\Annotation\AliasQuery;
 
@@ -17,6 +18,7 @@ class Ticket extends ResourceObject
     /**
      * @JsonSchema(key="ticket", schema="ticket.json")
      * @AliasQuery("ticket_item_by_id", type="row")
+     * @Link(rel="tickets", href="/api/tickets")
      *
      * @param string $id
      *
