@@ -36,6 +36,9 @@
                 <button class="button is-primary" :disabled="form.errors.any()">Create</button>
             </div>
         </form>
+        <div>
+            <button class="button is-info" @click="getTicket()">Get Ticket</button>
+        </div>
     </section>
 </template>
 
@@ -46,10 +49,10 @@
     name: "createTicket",
 
     props: {
-      weekdays: {
-        type: Array,
-        required: true
-      }
+      // weekdays: {
+      //   type: Array,
+      //   required: true
+      // }
     },
 
     data() {
@@ -63,6 +66,57 @@
     },
 
     methods: {
+      getTicket() {
+        let id = 'd76281e4-ae09-4446-8772-0a31e024f04d';
+        let response = this.getRequest(id);
+        console.log(response);
+      },
+      getRequest(id) {
+        let url = '/api/tickets/' + id;
+        let etag = '';
+        if (localStorage.getItem(id)) {
+          try {
+            let ticket = JSON.parse(localStorage[id]);
+            etag = ticket.header.etag;
+          } catch (e) {
+            localStorage.removeItem(id);
+          }
+        }
+        return new Promise((resolve, reject) => {
+          axios.get(url, {
+            'headers' : {
+              'If-None-Match': etag
+            }
+          })
+            .then(response => {
+              console.log(response.headers);
+              console.log(response.data);
+              localStorage[id] = JSON.stringify({
+                'path': url,
+                'header': {
+                  'etag': response.headers['etag'],
+                  'lastModified': response.headers['last-modified']
+                },
+                'body': {
+                  'id': response.data.id,
+                  'title': response.data.title,
+                  'description': response.data.description,
+                  'assignee': response.data.assignee
+                }
+              });
+              resolve(response.data);
+            })
+            .catch(error => {
+              console.error(error.response.headers);
+              if (error.response.status === 304) {
+                console.log('return 304');
+              } else {
+                console.error(error.response.status);
+                reject(error.response.data);
+              }
+            })
+        })
+      },
       onSubmit() {
         this.form.post('/api/tickets')
           .then(data => {
