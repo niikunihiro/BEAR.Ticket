@@ -86,7 +86,7 @@
   import Form from "../../core/Form";
 
   export default {
-    name: 'indexFrame',
+    name: 'indexTicket',
     props: {
       frames: {
         type: Array,

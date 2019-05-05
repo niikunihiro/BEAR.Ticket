@@ -27,9 +27,9 @@ Vue.use(Buefy);
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('task-index', require('./components/task/IndexComponent.vue').default);
-Vue.component('task-create', require('./components/task/CreateComponent.vue').default);
-Vue.component('task-edit', require('./components/task/EditComponent.vue').default);
+Vue.component('ticket-index', require('./components/ticket/IndexComponent.vue').default);
+Vue.component('ticket-create', require('./components/ticket/CreateComponent.vue').default);
+Vue.component('ticket-edit', require('./components/ticket/EditComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

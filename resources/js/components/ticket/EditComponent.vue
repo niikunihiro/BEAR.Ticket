@@ -56,7 +56,7 @@
   import Form from '../../core/Form';
 
   export default {
-    name: "editFrame",
+    name: "editTicket",
 
     props: {
       frame: {

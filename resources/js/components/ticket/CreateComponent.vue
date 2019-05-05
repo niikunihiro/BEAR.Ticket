@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h4 class="title is-4">Create Frame</h4>
+        <h4 class="title is-4">Create Ticket</h4>
         <form action="/api/tickets" method="POST" @submit.prevent="onSubmit" @keydown="form.errors.clear($event.target.name)" @change="form.errors.clear($event.target.name)">
             <div class="field">
                 <label for="title" class="label">Title:</label>
@@ -43,7 +43,7 @@
   import Form from '../../core/Form';
 
   export default {
-    name: "createFrame",
+    name: "createTicket",
 
     props: {
       weekdays: {
